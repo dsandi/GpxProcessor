@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GpxProcessor
@@ -14,9 +15,9 @@ namespace GpxProcessor
             {
                 Modifier = "-c"
             };
-
-            var output = shell.SetLatitude(87);
-            Console.Write(output);
+            Console.Write(shell.SetLocation(9.97726, -84.85066));
+            Thread.Sleep(2000);
+            Console.Write(shell.SetLocation(9.97729, -84.85049));
             Console.ReadLine();
         }
     }

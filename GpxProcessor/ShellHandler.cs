@@ -38,28 +38,31 @@ namespace GpxProcessor
                     UseShellExecute = false
                 }
             };
-            _cmd.Start();
-            _running = true;
         }
+
 
         private string ExecuteCommand(string command)
         {
-            if(!_running)
-                throw new Exception("The shell is not running");
+            _cmd.Start();
             _cmd.StandardInput.WriteLine(string.Join(" ", _shellPath, Modifier, command));
             _cmd.StandardInput.Flush();
             _cmd.StandardInput.Close();
             return _cmd.StandardOutput.ReadToEnd();
         }
 
-        public string SetLatitude(int latitude)
+        public string SetLatitude(double latitude)
         {
             return ExecuteCommand(LatCmd + latitude);
         }
 
-        public string SetLongitude(int longitude)
+        public string SetLongitude(double longitude)
         {
             return ExecuteCommand(LonCmd + longitude);
+        }
+
+        public string SetLocation(double latitude, double longitude)
+        {
+            return  ExecuteCommand(LatCmd + latitude) + ExecuteCommand(LonCmd + longitude);
         }
     }
 }
