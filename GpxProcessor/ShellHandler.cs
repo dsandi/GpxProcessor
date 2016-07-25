@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace GpxProcessor
 {
     public class ShellHandler
     {
-        private string _shellPath;
+        private readonly string _shellPath;
         private Process _cmd;
-        private bool _running;
 
         private const string LatCmd = "\"gps setlatitude \"";
         private const string LonCmd = "\"gps setlongitude \"";
@@ -22,7 +16,6 @@ namespace GpxProcessor
         public ShellHandler(string path)
         {
             _shellPath = path;
-            _running = false;
             _init();
         }
 
